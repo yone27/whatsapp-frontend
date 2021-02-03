@@ -5,10 +5,10 @@ import ChatHeader from './partials/ChatHeader'
 import ChatBody from './partials/ChatBody'
 import ChatFooter from './partials/ChatFooter'
 
-function Chat() {
+function Chat({messages}) {
     return <div className="chat">
         <ChatHeader />
-        <ChatBody />
+        <ChatBody messages={messages} />
         <ChatFooter />
     </div>
 }

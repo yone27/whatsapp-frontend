@@ -1,14 +1,21 @@
 import React, { useState } from 'react'
 import { IconButton } from '@material-ui/core'
 import { AttachFile, InsertEmoticon, Mic } from '@material-ui/icons'
+import axios from '../../../axios'
 
 function ChatFooter() {
     const [input, setInput] = useState("")
 
-    const sendMessage = (e) => {
+    const sendMessage = async e => {
         e.preventDefault()
-        setInput("")
+        await axios.post('/messages/new', {
+            message: input,
+            name: "Yone",
+            timestamp: "50 minutes",
+            received: false
+        })
     }
+
     return <div className="chat__footer">
         <IconButton>
             <InsertEmoticon />
