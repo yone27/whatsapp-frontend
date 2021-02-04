@@ -24,21 +24,21 @@ function App() {
         fetchAllData()
     }, [])
 
-    useEffect(() => {
-        const pusher = new Pusher('2e7998c3dd19bb8eff12', {
-            cluster: 'us2'
-        });
+    // useEffect(() => {
+    //     const pusher = new Pusher('2e7998c3dd19bb8eff12', {
+    //         cluster: 'us2'
+    //     });
 
-        const channel = pusher.subscribe('messages');
-        channel.bind('inserted', newMessage => {
-            setMessages([...messages, newMessage])
-        });
+    //     const channel = pusher.subscribe('messages');
+    //     channel.bind('inserted', newMessage => {
+    //         setMessages([...messages, newMessage])
+    //     });
 
-        return () => {
-            channel.unbind_all()
-            channel.unsubscribe()
-        }
-    }, [messages])
+    //     return () => {
+    //         channel.unbind_all()
+    //         channel.unsubscribe()
+    //     }
+    // }, [messages])
 
     console.log(messages)
     return (
