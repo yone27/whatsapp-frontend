@@ -10,9 +10,9 @@ function ChatFooter() {
         e.preventDefault()
         await axios.post('/messages/new', {
             message: input,
-            name: "Yone",
             timestamp: "50 minutes",
-            received: false
+            author: "601d7d92ca90643128bfa8aa",
+            roomId: "601d7eda66c93f20d04ec326"
         })
     }
 

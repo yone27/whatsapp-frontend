@@ -6,19 +6,23 @@ import Sidebar from './components/sidebar/Sidebar'
 import Chat from './components/chat/Chat'
 import axios from './axios'
 import './App.css';
+import { useStateValue } from "./data/StateProvider";
 
 function App() {
     const [messages, setMessages] = useState([])
+    const [{ rooms }, dispatch] = useStateValue();
 
     useEffect(() => {
         const fetchAllData = async () => {
             try {
-                const res = await axios.get('/messages/sync')
-                setMessages(res.data)
-                
+                const res = await axios.get('/rooms')
+                dispatch({
+                    type: 'SET_ROOMS',
+                    user: res.data,
+                })
             } catch (error) {
                 console.log(error);
-                
+
             }
         }
         fetchAllData()
@@ -40,18 +44,18 @@ function App() {
     //     }
     // }, [messages])
 
-    console.log(messages)
+    console.log(rooms)
     return (
         <div className="app">
             <div className="app__body">
                 <Router>
                     <Sidebar />
                     <Switch>
-                        {/* <Route path="/rooms/:roomId">
-                            <Chat messages={messages} />
-                        </Route> */}
+                        <Route path="/rooms/:roomId">
+                            <Chat />
+                        </Route>
                         <Route path="/">
-                            <Chat messages={messages} />
+                            <Chat />
                         </Route>
                     </Switch>
                 </Router>

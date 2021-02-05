@@ -7,8 +7,19 @@ import SearchOutlined from '@material-ui/icons/SearchOutlined'
 
 import './Sidebar.css';
 import SidebarChat from './partials/SidebarChat'
+import { useStateValue } from "../../data/StateProvider";
 
 function Sidebar() {
+    const [{ rooms }] = useStateValue();
+    console.log(rooms)
+    const createChat = () => {
+        const roomName = prompt("Please Enter Name for Chat");
+
+        if (roomName) {
+            console.log(roomName)
+        }
+    };
+
     return (
         <div className="sidebar">
             <div className="sidebar__header">
@@ -18,7 +29,7 @@ function Sidebar() {
                         <DonutLargeIcon />
                     </IconButton>
                     <IconButton>
-                        <ChatIcon />
+                        <ChatIcon onClick={createChat} />
                     </IconButton>
                     <IconButton>
                         <MoreVertIcon />
