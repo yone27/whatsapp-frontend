@@ -1,12 +1,11 @@
 export const initialState = {
 	user: {
-		id: '601d7d92ca90643128bfa8aa'
+		id: '601ae6070f6e501cbca15483'
 	},
 	rooms: []
 };
 
 const reducer = (state, action) => {
-	console.log(action);
 	switch (action.type) {
 		case "SET_USER":
 			return {

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Pusher from 'pusher-js'
+// import Pusher from 'pusher-js'
 
 import Sidebar from './components/sidebar/Sidebar'
 import Chat from './components/chat/Chat'
@@ -9,16 +9,17 @@ import './App.css';
 import { useStateValue } from "./data/StateProvider";
 
 function App() {
-    const [messages, setMessages] = useState([])
+    // const [messages, setMessages] = useState([])
     const [{ rooms }, dispatch] = useStateValue();
 
     useEffect(() => {
         const fetchAllData = async () => {
             try {
                 const res = await axios.get('/rooms')
+
                 dispatch({
                     type: 'SET_ROOMS',
-                    user: res.data,
+                    rooms: res.data,
                 })
             } catch (error) {
                 console.log(error);
